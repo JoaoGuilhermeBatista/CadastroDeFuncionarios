@@ -7,17 +7,68 @@ public class FuncionariosModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column
-    String nome;
+    private String nome;
 
     @Column
-    String email;
+    private String email;
 
     @Column
-    String senioridade;
+    private String senioridade;
 
     @Column
-    int idade;
+    private int idade;
+
+    public FuncionariosModel() {
+    }
+
+    public FuncionariosModel(Long id, String nome, String email, String senioridade, int idade) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senioridade = senioridade;
+        this.idade = idade;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenioridade() {
+        return senioridade;
+    }
+
+    public void setSenioridade(String senioridade) {
+        this.senioridade = senioridade;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
 }
