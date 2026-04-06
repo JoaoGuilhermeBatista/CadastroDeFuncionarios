@@ -16,8 +16,11 @@ public class TarefasModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private String descricao;
+
     private String status;
     // Uma tarefa pode ter mais de um funcionario
     @OneToMany(mappedBy = "tarefas")
