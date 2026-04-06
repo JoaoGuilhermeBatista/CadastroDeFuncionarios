@@ -1,8 +1,17 @@
 package dev.java10x.cadastrodefuncionarios.Tarefas;
+import dev.java10x.cadastrodefuncionarios.Funcionarios.FuncionariosModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_tarefas")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data // Getter and Setters
 public class TarefasModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,46 +19,7 @@ public class TarefasModel {
     private String nome;
     private String descricao;
     private String status;
-
-    public TarefasModel() {
-    }
-
-    public TarefasModel(Long id, String nome, String descricao, String status) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    // Uma tarefa pode ter mais de um funcionario
+    @OneToMany(mappedBy = "tarefas")
+    private List<FuncionariosModel> funcionarios;
 }
