@@ -15,12 +15,16 @@ import java.util.List;
 public class TarefasModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "nome")
     private String nome;
 
+    @Column(name = "descricao")
     private String descricao;
 
+    @Column(name = "status")
     private String status;
     // Uma tarefa pode ter mais de um funcionario
     @OneToMany(mappedBy = "tarefas")
