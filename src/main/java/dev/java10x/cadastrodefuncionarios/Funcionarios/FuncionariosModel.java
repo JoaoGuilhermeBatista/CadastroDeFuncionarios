@@ -1,4 +1,5 @@
 package dev.java10x.cadastrodefuncionarios.Funcionarios;
+import dev.java10x.cadastrodefuncionarios.Tarefas.TarefasModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,5 +28,9 @@ public class FuncionariosModel {
 
     @Column(name = "idade")
     private int idade;
+
+    @ManyToOne
+    @JoinColumn(name = "tarefas_id")
+    private TarefasModel tarefas;
 
 }
