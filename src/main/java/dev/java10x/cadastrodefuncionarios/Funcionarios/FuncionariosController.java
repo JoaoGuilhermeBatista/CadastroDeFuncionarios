@@ -1,15 +1,42 @@
 package dev.java10x.cadastrodefuncionarios.Funcionarios;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/funcionarios")
 public class FuncionariosController {
 
     @GetMapping("/boasvindas")
     public String boasVindas() {
         return "Essa é a API de cadastro de funcionários, aqui você pode cadastrar, editar, excluir e listar os funcionários da sua empresa.";
+    }
+
+    // Adicionar Funciońario (CREATE)
+    @PostMapping("/adicionar")
+    public String adicionarFuncionario() {
+        return "Funcionario Adicionado";
+    }
+
+    // Procurar Funcionario por Id (CREATE)
+    @GetMapping("/procurar{id}")
+    public String mostrarFuncionariosId() {
+        return "Lista de funcionários por Id";
+    }
+
+    // Mostrar todos os funcionários (READ)
+    @GetMapping("/mostrar")
+    public String mostrarFuncionarios() {
+        return "Lista de funcionários";
+    }
+
+    // Alterar dados dos Funcionários (UPDATE)
+    @PutMapping("/editar{id}")
+    public String editarFuncionarioPorId() {
+        return "Dados do funcionário alterados";
+    }
+    // Deletar Ninja (DELETE)
+    @DeleteMapping("/deletar{id}")
+    public String deletarFuncionarioPorId() {
+        return "Funcionário deletado";
     }
 
 }
