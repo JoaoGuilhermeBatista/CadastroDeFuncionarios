@@ -1,9 +1,17 @@
 package dev.java10x.cadastrodefuncionarios.Funcionarios;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/funcionarios")
 public class FuncionariosController {
+
+    private FuncionariosService funcionariosService;
+
+    public FuncionariosController(FuncionariosService funcionariosService) {
+        this.funcionariosService = funcionariosService;
+    }
 
     @GetMapping("/boasvindas")
     public String boasVindas() {
@@ -24,8 +32,8 @@ public class FuncionariosController {
 
     // Mostrar todos os funcionários (READ)
     @GetMapping("/mostrar")
-    public String mostrarFuncionarios() {
-        return "Lista de funcionários";
+    public List<FuncionariosModel> mostrarFuncionarios() {
+        return funcionariosService.listarFuncionarios();
     }
 
     // Alterar dados dos Funcionários (UPDATE)

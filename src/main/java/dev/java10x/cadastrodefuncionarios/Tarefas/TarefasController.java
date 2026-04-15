@@ -1,9 +1,18 @@
 package dev.java10x.cadastrodefuncionarios.Tarefas;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/tarefas")
 public class TarefasController {
+
+    private TarefasService tarefasService;
+
+    public TarefasController(TarefasService tarefasService) {
+        this.tarefasService = tarefasService;
+    }
+
     @GetMapping("/boasvindas")
     public String boasVindas() {
         return "Boas vindas a parte de designaçao, aqui você pode designar tarefas para os funcionários da sua empresa e qual a sua urgencia.";
@@ -23,8 +32,8 @@ public class TarefasController {
 
     // Mostrar Tarefas
     @GetMapping("/mostrar")
-    public String listarTarefas() {
-        return "Lista de tarefas";
+    public List<TarefasModel> listarTarefas() {
+        return tarefasService.listarTarefas();
     }
 
     //Alterar dados das tarefas
