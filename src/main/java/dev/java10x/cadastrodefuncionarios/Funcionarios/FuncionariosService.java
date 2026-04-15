@@ -4,6 +4,7 @@ import jakarta.persistence.Id;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FuncionariosService {
@@ -15,11 +16,19 @@ public class FuncionariosService {
     }
 
     // Procurar por Id
-
+    public FuncionariosModel listarFuncionariosId(Long id) {
+        Optional<FuncionariosModel> funcionarioId = funcionariosRepository.findById(id);
+        return funcionarioId.orElse(null);
+    }
 
     // Mostrar todos os funcionários
     public List<FuncionariosModel> listarFuncionarios() {
         return funcionariosRepository.findAll();
+    }
+
+    // Adicionar um Funcionário
+    public FuncionariosModel criarFuncionarios(FuncionariosModel funcionario)  {
+        return funcionariosRepository.save(funcionario);
     }
 
 

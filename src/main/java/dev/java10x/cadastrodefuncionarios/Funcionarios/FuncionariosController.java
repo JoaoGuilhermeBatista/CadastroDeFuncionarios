@@ -20,14 +20,14 @@ public class FuncionariosController {
 
     // Adicionar Funciońario (CREATE)
     @PostMapping("/adicionar")
-    public String adicionarFuncionario() {
-        return "Funcionario Adicionado";
+    public FuncionariosModel adicionarFuncionario(@RequestBody FuncionariosModel funcionariosModel) {
+        return funcionariosService.criarFuncionarios(funcionariosModel);
     }
 
     // Procurar Funcionario por Id (CREATE)
-    @GetMapping("/procurar{id}")
-    public String mostrarFuncionariosId() {
-        return "Lista de funcionários por Id";
+    @GetMapping("/procurar/{id}")
+    public FuncionariosModel mostrarFuncionariosId(@PathVariable Long id) {
+        return funcionariosService.listarFuncionariosId(id);
     }
 
     // Mostrar todos os funcionários (READ)
@@ -37,12 +37,13 @@ public class FuncionariosController {
     }
 
     // Alterar dados dos Funcionários (UPDATE)
-    @PutMapping("/editar{id}")
+    @PutMapping("/editar/{id}")
     public String editarFuncionarioPorId() {
         return "Dados do funcionário alterados";
     }
+
     // Deletar Ninja (DELETE)
-    @DeleteMapping("/deletar{id}")
+    @DeleteMapping("/deletar/{id}")
     public String deletarFuncionarioPorId() {
         return "Funcionário deletado";
     }

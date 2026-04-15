@@ -26,8 +26,8 @@ public class TarefasController {
 
     // Procurar Tarefas por Id
     @GetMapping("/procurar/{id}")
-    public String listarTarefasPorId() {
-        return "Lista de Tarefas por Id";
+    public TarefasModel listarTarefasPorId(@PathVariable Long id) {
+        return tarefasService.listarTarefaId(id);
     }
 
     // Mostrar Tarefas
@@ -37,13 +37,13 @@ public class TarefasController {
     }
 
     //Alterar dados das tarefas
-    @PutMapping("/editar{id}")
+    @PutMapping("/editar/{id}")
     public String editarTarefaPorId() {
         return "Dados da tarefa alterados";
     }
 
     // Deletar Tarefas
-    @DeleteMapping("/deletar{id}")
+    @DeleteMapping("/deletar/{id}")
     public String deletarTarefaPorId() {
         return "Tarefa deletada";
     }

@@ -3,6 +3,7 @@ package dev.java10x.cadastrodefuncionarios.Tarefas;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TarefasService {
@@ -13,6 +14,12 @@ public class TarefasService {
         this.tarefasRepository = tarefasRepository;
     }
 
+
+    // Mostrar por Id
+    public TarefasModel listarTarefaId(Long id) {
+        Optional<TarefasModel> tarefaId =  tarefasRepository.findById(id);
+        return tarefaId.orElse(null);
+    }
 
     // Mostrar todas as tarefas
     public List<TarefasModel>  listarTarefas() {
