@@ -44,8 +44,8 @@ public class FuncionariosController {
 
     // Deletar Ninja (DELETE)
     @DeleteMapping("/deletar/{id}")
-    public String deletarFuncionarioPorId() {
-        return "Funcionário deletado";
+    public void deletarFuncionarioPorId(@PathVariable Long id) {
+        funcionariosService.deletarPorId(id);
     }
 
 }

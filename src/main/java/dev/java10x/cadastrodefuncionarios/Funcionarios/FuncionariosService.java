@@ -31,6 +31,14 @@ public class FuncionariosService {
         return funcionariosRepository.save(funcionario);
     }
 
+    // Deletar um Funcionário - Tem que ser um método void, pois não tem retorno
+    public void deletarPorId(Long id) {
+         funcionariosRepository.deleteById(id);
+    }
+
+    // Atualizar Funcionario
+
+
 
 
 }

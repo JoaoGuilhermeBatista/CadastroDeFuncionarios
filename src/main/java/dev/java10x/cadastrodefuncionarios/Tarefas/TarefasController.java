@@ -7,10 +7,12 @@ import java.util.List;
 @RequestMapping("/tarefas")
 public class TarefasController {
 
+    private final TarefasRepository tarefasRepository;
     private TarefasService tarefasService;
 
-    public TarefasController(TarefasService tarefasService) {
+    public TarefasController(TarefasService tarefasService, TarefasRepository tarefasRepository) {
         this.tarefasService = tarefasService;
+        this.tarefasRepository = tarefasRepository;
     }
 
     @GetMapping("/boasvindas")
@@ -20,8 +22,8 @@ public class TarefasController {
 
     // Adiconar Tarefa
     @PostMapping("/adicionar")
-    public String adicionarTarefa() {
-        return "Tarefa adicionada com sucesso!";
+    public TarefasModel adicionarTarefa(@RequestBody TarefasModel tarefas) {
+        return tarefasService.adicionarTarefa(tarefas);
     }
 
     // Procurar Tarefas por Id
@@ -44,7 +46,7 @@ public class TarefasController {
 
     // Deletar Tarefas
     @DeleteMapping("/deletar/{id}")
-    public String deletarTarefaPorId() {
-        return "Tarefa deletada";
+    public void deletarTarefaPorId(@PathVariable Long id) {
+        tarefasService.deletarTarefaId(id);
     }
 }

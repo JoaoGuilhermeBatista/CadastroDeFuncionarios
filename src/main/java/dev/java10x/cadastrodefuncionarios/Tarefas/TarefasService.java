@@ -1,5 +1,6 @@
 package dev.java10x.cadastrodefuncionarios.Tarefas;
 
+import dev.java10x.cadastrodefuncionarios.Funcionarios.FuncionariosModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,11 @@ public class TarefasService {
     }
 
 
+    // Adicionar Tarefa
+    public TarefasModel adicionarTarefa(TarefasModel tarefas) {
+        return tarefasRepository.save(tarefas);
+    }
+
     // Mostrar por Id
     public TarefasModel listarTarefaId(Long id) {
         Optional<TarefasModel> tarefaId =  tarefasRepository.findById(id);
@@ -25,4 +31,10 @@ public class TarefasService {
     public List<TarefasModel>  listarTarefas() {
         return tarefasRepository.findAll();
     }
+
+    // Deletar Tarefa
+    public void deletarTarefaId(Long id) {
+        tarefasRepository.deleteById(id);
+    }
+
 }
