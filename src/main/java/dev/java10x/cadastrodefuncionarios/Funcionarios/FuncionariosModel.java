@@ -15,7 +15,7 @@ public class FuncionariosModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private long id;
 
     @Column(name = "nome")
     private String nome;
@@ -28,6 +28,9 @@ public class FuncionariosModel {
 
     @Column(name = "idade")
     private int idade;
+
+    @Column(name = "telefone")
+    private String telefone;
 
     @ManyToOne
     @JoinColumn(name = "tarefas_id")

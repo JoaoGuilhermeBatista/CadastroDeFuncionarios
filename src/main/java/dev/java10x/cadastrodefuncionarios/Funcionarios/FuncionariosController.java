@@ -9,6 +9,7 @@ public class FuncionariosController {
 
     private FuncionariosService funcionariosService;
 
+
     public FuncionariosController(FuncionariosService funcionariosService) {
         this.funcionariosService = funcionariosService;
     }
@@ -20,8 +21,8 @@ public class FuncionariosController {
 
     // Adicionar Funciońario (CREATE)
     @PostMapping("/adicionar")
-    public FuncionariosModel adicionarFuncionario(@RequestBody FuncionariosModel funcionariosModel) {
-        return funcionariosService.criarFuncionarios(funcionariosModel);
+    public FuncionariosDTO adicionarFuncionario(@RequestBody FuncionariosDTO funcionario) {
+        return funcionariosService.criarFuncionarios(funcionario);
     }
 
     // Procurar Funcionario por Id (CREATE)

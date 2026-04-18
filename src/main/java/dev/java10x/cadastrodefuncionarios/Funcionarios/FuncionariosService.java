@@ -9,9 +9,11 @@ import java.util.Optional;
 public class FuncionariosService {
 
     private FuncionariosRepository funcionariosRepository;
+    private FuncionariosMapper funcionariosMapper;
 
-    public FuncionariosService(FuncionariosRepository funcionariosRepository) {
+    public FuncionariosService(FuncionariosRepository funcionariosRepository, FuncionariosMapper funcionariosMapper) {
         this.funcionariosRepository = funcionariosRepository;
+        this.funcionariosMapper = funcionariosMapper;
     }
 
     // Procurar por Id
@@ -26,8 +28,10 @@ public class FuncionariosService {
     }
 
     // Adicionar um Funcionário
-    public FuncionariosModel criarFuncionarios(FuncionariosModel funcionario)  {
-        return funcionariosRepository.save(funcionario);
+    public FuncionariosDTO criarFuncionarios(FuncionariosDTO funcionarioDTO)  {
+        FuncionariosModel funcionario = funcionariosMapper.map(funcionarioDTO);
+        funcionario = funcionariosRepository.save(funcionario);
+        return funcionariosMapper.map(funcionario);
     }
 
     // Deletar um Funcionário - Tem que ser um método void, pois não tem retorno
