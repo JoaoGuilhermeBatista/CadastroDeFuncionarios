@@ -40,8 +40,8 @@ public class TarefasController {
 
     //Alterar dados das tarefas
     @PutMapping("/editar/{id}")
-    public String editarTarefaPorId() {
-        return "Dados da tarefa alterados";
+    public TarefasModel editarTarefaPorId(@PathVariable Long id, TarefasModel tarefaAtualizada) {
+        return tarefasService.editarTarefaId( id, tarefaAtualizada);
     }
 
     // Deletar Tarefas

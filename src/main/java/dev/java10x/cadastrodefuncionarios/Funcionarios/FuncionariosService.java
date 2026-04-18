@@ -1,6 +1,5 @@
 package dev.java10x.cadastrodefuncionarios.Funcionarios;
 
-import jakarta.persistence.Id;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,7 +36,14 @@ public class FuncionariosService {
     }
 
     // Atualizar Funcionario
-
+    public FuncionariosModel editarFuncionarioId(Long id, FuncionariosModel funcionarioAtualizado) {
+        if (funcionariosRepository.existsById(id)) {
+        funcionarioAtualizado.setId(id);
+        return funcionariosRepository.save(funcionarioAtualizado);
+        } else {
+            return null;
+        }
+    }
 
 
 

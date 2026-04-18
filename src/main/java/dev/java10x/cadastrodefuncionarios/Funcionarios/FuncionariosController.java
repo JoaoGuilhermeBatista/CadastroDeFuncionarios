@@ -38,8 +38,8 @@ public class FuncionariosController {
 
     // Alterar dados dos Funcionários (UPDATE)
     @PutMapping("/editar/{id}")
-    public String editarFuncionarioPorId() {
-        return "Dados do funcionário alterados";
+    public FuncionariosModel editarFuncionarioPorId(@PathVariable Long id, FuncionariosModel funcionarioAtualizado) {
+        return funcionariosService.editarFuncionarioId(id, funcionarioAtualizado);
     }
 
     // Deletar Ninja (DELETE)
