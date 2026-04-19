@@ -28,8 +28,8 @@ public class FuncionariosService {
     }
 
     // Adicionar um Funcionário
-    public FuncionariosDTO criarFuncionarios(FuncionariosDTO funcionarioDTO)  {
-        FuncionariosModel funcionario = funcionariosMapper.map(funcionarioDTO);
+    public FuncionariosDTO criarFuncionario(FuncionariosDTO funcionariosDTO)  {
+        FuncionariosModel funcionario = funcionariosMapper.map(funcionariosDTO);
         funcionario = funcionariosRepository.save(funcionario);
         return funcionariosMapper.map(funcionario);
     }

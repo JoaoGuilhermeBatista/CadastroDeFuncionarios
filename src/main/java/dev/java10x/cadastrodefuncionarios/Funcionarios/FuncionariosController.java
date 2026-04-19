@@ -21,8 +21,8 @@ public class FuncionariosController {
 
     // Adicionar Funciońario (CREATE)
     @PostMapping("/adicionar")
-    public FuncionariosDTO adicionarFuncionario(@RequestBody FuncionariosDTO funcionario) {
-        return funcionariosService.criarFuncionarios(funcionario);
+    public FuncionariosDTO criarFuncionario (@RequestBody FuncionariosDTO funcionario){
+        return funcionariosService.criarFuncionario(funcionario);
     }
 
     // Procurar Funcionario por Id (CREATE)

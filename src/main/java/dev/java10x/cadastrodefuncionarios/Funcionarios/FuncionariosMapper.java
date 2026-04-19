@@ -4,29 +4,33 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FuncionariosMapper {
-    public FuncionariosModel map(FuncionariosDTO funcionariosDTO) {
+
+    public FuncionariosModel map(FuncionariosDTO funcionarioDTO) {
+
         FuncionariosModel funcionariosModel = new FuncionariosModel();
-        funcionariosModel.setId(funcionariosDTO.getId());
-        funcionariosModel.setNome(funcionariosDTO.getNome());
-        funcionariosModel.setEmail(funcionariosDTO.getEmail());
-        funcionariosModel.setSenioridade(funcionariosDTO.getSenioridade());
-        funcionariosModel.setIdade(funcionariosDTO.getIdade());
-        funcionariosModel.setTelefone(funcionariosDTO.getTelefone());
-        funcionariosModel.setTarefas(funcionariosDTO.getTarefas());
-        return funcionariosModel;
+            funcionariosModel.setId(funcionarioDTO.getId());
+            funcionariosModel.setNome(funcionarioDTO.getNome());
+            funcionariosModel.setEmail(funcionarioDTO.getEmail());
+            funcionariosModel.setSenioridade(funcionarioDTO.getSenioridade());
+            funcionariosModel.setIdade(funcionarioDTO.getIdade());
+            funcionariosModel.setTelefone(funcionarioDTO.getTelefone());
+            funcionariosModel.setTarefas(funcionarioDTO.getTarefas());
+
+            return funcionariosModel;
     }
 
-    public FuncionariosDTO map(FuncionariosModel funcionariosModel) {
-        FuncionariosDTO funcionariosDTO = new FuncionariosDTO();
-        funcionariosDTO.setId(funcionariosModel.getId());
-        funcionariosDTO.setNome(funcionariosModel.getNome());
-        funcionariosDTO.setEmail(funcionariosModel.getEmail());
-        funcionariosDTO.setSenioridade(funcionariosModel.getSenioridade());
-        funcionariosDTO.setIdade(funcionariosModel.getIdade());
-        funcionariosDTO.setTelefone(funcionariosModel.getTelefone());
-        funcionariosDTO.setTarefas(funcionariosModel.getTarefas());
-        return funcionariosDTO;
-    }
+        public FuncionariosDTO map(FuncionariosModel funcionarioModel) {
 
+            FuncionariosDTO funcionariosDTO = new FuncionariosDTO();
+            funcionariosDTO.setId(funcionarioModel.getId());
+            funcionariosDTO.setNome(funcionarioModel.getNome());
+            funcionariosDTO.setEmail(funcionarioModel.getEmail());
+            funcionariosDTO.setSenioridade(funcionarioModel.getSenioridade());
+            funcionariosDTO.setIdade(funcionarioModel.getIdade());
+            funcionariosDTO.setTelefone(funcionarioModel.getTelefone());
+            funcionariosDTO.setTarefas(funcionarioModel.getTarefas());
+
+            return funcionariosDTO;
+        }
 
 }

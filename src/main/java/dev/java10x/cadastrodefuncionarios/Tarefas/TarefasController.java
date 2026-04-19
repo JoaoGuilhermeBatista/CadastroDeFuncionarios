@@ -22,8 +22,8 @@ public class TarefasController {
 
     // Adiconar Tarefa
     @PostMapping("/adicionar")
-    public TarefasModel adicionarTarefa(@RequestBody TarefasModel tarefas) {
-        return tarefasService.adicionarTarefa(tarefas);
+    public TarefasDTO criarTarefa (@RequestBody TarefasDTO tarefa) {
+        return tarefasService.criarTarefa(tarefa);
     }
 
     // Procurar Tarefas por Id

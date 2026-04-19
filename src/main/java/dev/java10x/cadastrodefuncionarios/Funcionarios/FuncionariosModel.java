@@ -29,7 +29,7 @@ public class FuncionariosModel {
     @Column(name = "idade")
     private int idade;
 
-    @Column(name = "telefone")
+    @Column(name = "telefone", unique = true)
     private String telefone;
 
     @ManyToOne

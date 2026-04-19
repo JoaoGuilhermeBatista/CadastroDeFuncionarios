@@ -10,15 +10,18 @@ import java.util.Optional;
 public class TarefasService {
 
     private TarefasRepository tarefasRepository;
+    private TarefasMapper tarefasMapper;
 
-    public TarefasService(TarefasRepository tarefasRepository) {
+    public TarefasService(TarefasRepository tarefasRepository, TarefasMapper tarefasMapper) {
         this.tarefasRepository = tarefasRepository;
+        this.tarefasMapper = tarefasMapper;
     }
 
-
     // Adicionar Tarefa
-    public TarefasModel adicionarTarefa(TarefasModel tarefas) {
-        return tarefasRepository.save(tarefas);
+    public TarefasDTO criarTarefa(TarefasDTO tarefasDTO) {
+        TarefasModel tarefa = tarefasMapper.map(tarefasDTO);
+        tarefa = tarefasRepository.save(tarefa);
+        return tarefasMapper.map(tarefa);
     }
 
     // Mostrar por Id
