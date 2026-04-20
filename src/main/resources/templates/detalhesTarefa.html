@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detalhes da Tarefa</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Detalhes da Tarefa</h1>
+
+<div class="detalhes">
+    <p><strong>ID:</strong> <span th:text="${tarefa.id}"></span></p>
+    <p><strong>Nome:</strong> <span th:text="${tarefa.nome}"></span></p>
+    <p><strong>Descrição:</strong> <span th:text="${tarefa.descricao}"></span></p>
+    <p><strong>Status:</strong> <span th:text="${tarefa.status}"></span></p>
+    <div class="detalhes-acoes">
+        <a th:href="@{/tarefas/ui/editar/{id}(id=${tarefa.id})}">Editar</a>
+        <a th:href="@{/tarefas/ui/mostrar}">Voltar</a>
+    </div>
+</div>
+
+</body>
+</html>

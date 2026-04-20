@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editar Funcionário</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Editar Funcionário</h1>
+
+<form th:action="@{/funcionarios/ui/editar/{id}(id=${funcionario.id})}" th:object="${funcionario}" method="post">
+    <label>Nome:
+        <input type="text" th:field="*{nome}" />
+    </label>
+    <label>Email:
+        <input type="email" th:field="*{email}" />
+    </label>
+    <label>Idade:
+        <input type="number" th:field="*{idade}" />
+    </label>
+    <label>Telefone:
+        <input type="text" th:field="*{telefone}" />
+    </label>
+    <label>Senioridade:
+        <input type="text" th:field="*{senioridade}" />
+    </label>
+    <label>Tarefa:
+        <select name="tarefaId">
+            <option value="">Sem Tarefa</option>
+            <option th:each="tarefa : ${tarefas}"
+                    th:value="${tarefa.id}"
+                    th:text="${tarefa.nome}"
+                    th:selected="${funcionario.tarefas != null && funcionario.tarefas.id == tarefa.id}">
+            </option>
+        </select>
+    </label>
+    <button type="submit">Salvar</button>
+    <a th:href="@{/funcionarios/ui/mostrar}">Cancelar</a>
+</form>
+
+</body>
+</html>

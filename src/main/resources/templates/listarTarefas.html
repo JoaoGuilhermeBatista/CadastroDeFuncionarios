@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabela de Tarefas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista de Tarefas</h1>
+<a th:href="@{/tarefas/ui/adicionar}">Adicionar Tarefa</a><br><br>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th>Status</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tarefas : ${tarefas}">
+        <td th:text="${tarefas.id}"></td>
+        <td th:text="${tarefas.nome}"></td>
+        <td th:text="${tarefas.descricao}"></td>
+        <td th:text="${tarefas.status}"></td>
+        <td>
+            <a th:href="@{/tarefas/ui/procurar/{id}(id=${tarefas.id})}">Ver detalhes</a>
+            <a th:href="@{/tarefas/ui/editar/{id}(id=${tarefas.id})}">Alterar</a>
+            <a th:href="@{/tarefas/ui/deletar/{id}(id=${tarefas.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

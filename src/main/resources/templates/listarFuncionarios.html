@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabela de Funcionários</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista de Funcionários</h1>
+<a th:href="@{/funcionarios/ui/adicionar}">Adicionar Funcionário</a><br><br>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th>Senioridade</th>
+        <th>Tarefa</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="funcionario : ${funcionarios}">
+        <td th:text="${funcionario.id}"></td>
+        <td th:text="${funcionario.nome}"></td>
+        <td th:text="${funcionario.idade}"></td>
+        <td th:text="${funcionario.telefone}"></td>
+        <td th:text="${funcionario.email}"></td>
+        <td th:text="${funcionario.senioridade}"></td>
+        <td>
+            <span th:if="${funcionario.tarefas != null}">
+                Nome: <span th:text="${funcionario.tarefas.nome}"></span>,
+                Descrição: <span th:text="${funcionario.tarefas.descricao}"></span>
+            </span>
+            <span th:unless="${funcionario.tarefas != null}">Sem Tarefas</span>
+        </td>
+        <td>
+            <a th:href="@{/funcionarios/ui/procurar/{id}(id=${funcionario.id})}">Ver detalhes</a>
+            <a th:href="@{/funcionarios/ui/editar/{id}(id=${funcionario.id})}">Alterar</a>
+            <a th:href="@{/funcionarios/ui/deletar/{id}(id=${funcionario.id})}">Deletar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

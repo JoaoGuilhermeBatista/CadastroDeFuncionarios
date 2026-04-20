@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adicionar Funcionário</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Adicionar Funcionário</h1>
+
+<form th:action="@{/funcionarios/ui/adicionar}" th:object="${funcionario}" method="post">
+    <label>Nome:
+        <input type="text" th:field="*{nome}" />
+    </label>
+    <label>Email:
+        <input type="email" th:field="*{email}" />
+    </label>
+    <label>Idade:
+        <input type="number" th:field="*{idade}" />
+    </label>
+    <label>Telefone:
+        <input type="text" th:field="*{telefone}" />
+    </label>
+    <label>Senioridade:
+        <input type="text" th:field="*{senioridade}" />
+    </label>
+    <button type="submit">Adicionar</button>
+    <a th:href="@{/funcionarios/ui/mostrar}">Cancelar</a>
+</form>
+
+</body>
+</html>

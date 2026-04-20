@@ -53,6 +53,11 @@ public class TarefasService {
         }
     }
 
+    public Optional<TarefasModel> buscarModelPorId(Long id) {
+        if (id == null) return Optional.empty();
+        return tarefasRepository.findById(id);
+    }
+
     // Deletar Tarefa
     public void deletarTarefaId(Long id) {
         tarefasRepository.deleteById(id);

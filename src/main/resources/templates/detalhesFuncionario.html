@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detalhes do Funcionário</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Detalhes do Funcionário</h1>
+
+<div class="detalhes">
+    <p><strong>ID:</strong> <span th:text="${funcionario.id}"></span></p>
+    <p><strong>Nome:</strong> <span th:text="${funcionario.nome}"></span></p>
+    <p><strong>Email:</strong> <span th:text="${funcionario.email}"></span></p>
+    <p><strong>Idade:</strong> <span th:text="${funcionario.idade}"></span></p>
+    <p><strong>Telefone:</strong> <span th:text="${funcionario.telefone}"></span></p>
+    <p><strong>Senioridade:</strong> <span th:text="${funcionario.senioridade}"></span></p>
+    <p><strong>Tarefa:</strong>
+        <span th:if="${funcionario.tarefas != null}" th:text="${funcionario.tarefas.nome}"></span>
+        <span th:unless="${funcionario.tarefas != null}">Sem Tarefas</span>
+    </p>
+    <div class="detalhes-acoes">
+        <a th:href="@{/funcionarios/ui/editar/{id}(id=${funcionario.id})}">Editar</a>
+        <a th:href="@{/funcionarios/ui/mostrar}">Voltar</a>
+    </div>
+</div>
+
+</body>
+</html>
