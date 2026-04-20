@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class FuncionariosDTO {
-    private long id;
+    private Long id;
     private String nome;
     private String email;
     private String senioridade;
