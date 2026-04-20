@@ -1,4 +1,6 @@
 package dev.java10x.cadastrodefuncionarios.Tarefas;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,31 +24,57 @@ public class TarefasController {
 
     // Adiconar Tarefa
     @PostMapping("/adicionar")
-    public TarefasDTO criarTarefa (@RequestBody TarefasDTO tarefa) {
-        return tarefasService.criarTarefa(tarefa);
+    public ResponseEntity<String> criarTarefa (@RequestBody TarefasDTO tarefa) {
+
+        TarefasDTO novaTarefa = tarefasService.criarTarefa(tarefa);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Tarefa criada com sucesso! Título: " + novaTarefa.getNome() + " ID: "  + novaTarefa.getId());
     }
 
     // Procurar Tarefas por Id
     @GetMapping("/procurar/{id}")
-    public TarefasDTO listarTarefasPorId(@PathVariable Long id) {
-        return tarefasService.listarTarefaId(id);
+    public ResponseEntity<?> listarTarefasPorId(@PathVariable Long id) {
+
+        TarefasDTO tarefaId = tarefasService.listarTarefaId(id);
+        if (tarefaId != null) {
+            return ResponseEntity.ok(tarefaId);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Tarefa não existe no ID: " + id);
+        }
     }
 
     // Mostrar Tarefas
     @GetMapping("/mostrar")
-    public List<TarefasDTO> listarTarefas() {
-        return tarefasService.listarTarefas();
+    public ResponseEntity<List<TarefasDTO>> listarTarefas() {
+        List<TarefasDTO> tarefas = tarefasService.listarTarefas();
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(tarefas);
     }
 
     //Alterar dados das tarefas
     @PutMapping("/editar/{id}")
-    public TarefasDTO editarTarefaPorId(@PathVariable Long id, @RequestBody TarefasDTO tarefaAtualizada) {
-        return tarefasService.editarTarefaId( id, tarefaAtualizada);
+    public ResponseEntity<?> editarTarefaPorId(@PathVariable Long id, @RequestBody TarefasDTO tarefaAtualizada) {
+
+        TarefasDTO tarefaEditada = tarefasService.editarTarefaId( id, tarefaAtualizada);
+        if (tarefaEditada != null) {
+            return ResponseEntity.ok(tarefaEditada);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Tarefa não existe no ID: " + id);
+        }
     }
 
     // Deletar Tarefas
     @DeleteMapping("/deletar/{id}")
-    public void deletarTarefaPorId(@PathVariable Long id) {
-        tarefasService.deletarTarefaId(id);
+    public ResponseEntity<String> deletarTarefaPorId(@PathVariable Long id) {
+
+       if (tarefasService.listarTarefaId(id) != null) {
+           tarefasService.deletarTarefaId(id);
+           return ResponseEntity.ok("Tarefa deletada com sucesso! ID: " + id);
+       } else {
+           return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                   .body("Tarefa não existe no ID: " + id);
+       }
     }
 }

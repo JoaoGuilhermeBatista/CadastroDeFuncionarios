@@ -26,7 +26,7 @@ public class TarefasService {
         return tarefasMapper.map(tarefa);
     }
 
-    // Mostrar por Id
+    // Procurar por Id
     public TarefasDTO listarTarefaId(Long id) {
         Optional<TarefasModel> tarefaId =  tarefasRepository.findById(id);
         return tarefaId.map(tarefasMapper::map).orElse(null);
@@ -38,11 +38,6 @@ public class TarefasService {
         return tarefas.stream()
                 .map(tarefasMapper::map)
                 .collect(Collectors.toList());
-    }
-
-    // Deletar Tarefa
-    public void deletarTarefaId(Long id) {
-        tarefasRepository.deleteById(id);
     }
 
     // Atualizar Tarefa por Id
@@ -57,4 +52,10 @@ public class TarefasService {
             return null;
         }
     }
+
+    // Deletar Tarefa
+    public void deletarTarefaId(Long id) {
+        tarefasRepository.deleteById(id);
+    }
+
 }

@@ -1,4 +1,7 @@
 package dev.java10x.cadastrodefuncionarios.Funcionarios;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,32 +24,57 @@ public class FuncionariosController {
 
     // Adicionar Funciońario (CREATE)
     @PostMapping("/adicionar")
-    public FuncionariosDTO criarFuncionario(@RequestBody FuncionariosDTO funcionariosDTO) {
-        return funcionariosService.criarFuncionario(funcionariosDTO);
+    public ResponseEntity<String> criarFuncionario(@RequestBody FuncionariosDTO funcionariosDTO) {
+        FuncionariosDTO novoFuncionario = funcionariosService.criarFuncionario(funcionariosDTO);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Funcionário criado com sucesso! Nome: " + novoFuncionario.getNome() + " ID: "  + novoFuncionario.getId());
     }
 
     // Procurar Funcionario por Id (CREATE)
     @GetMapping("/procurar/{id}")
-    public FuncionariosDTO mostrarFuncionariosId(@PathVariable Long id) {
-        return funcionariosService.listarFuncionariosId(id);
+    public ResponseEntity<?> mostrarFuncionariosId(@PathVariable Long id) {
+        FuncionariosDTO funcionariosId = funcionariosService.listarFuncionariosId(id);
+        if (funcionariosId != null) {
+            return ResponseEntity.ok(funcionariosId);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Funcionário não existe no ID: " + id);
+        }
     }
 
     // Mostrar todos os funcionários (READ)
     @GetMapping("/mostrar")
-    public List<FuncionariosDTO> mostrarFuncionarios() {
-        return funcionariosService.listarFuncionarios();
+    public ResponseEntity<List<FuncionariosDTO>> mostrarFuncionarios() {
+        List<FuncionariosDTO> funcionarios = funcionariosService.listarFuncionarios();
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(funcionarios);
     }
 
     // Alterar dados dos Funcionários (UPDATE)
     @PutMapping("/editar/{id}")
-    public FuncionariosDTO editarFuncionarioPorId(@PathVariable Long id, @RequestBody FuncionariosDTO funcionarioAtualizado) {
-        return funcionariosService.editarFuncionarioId(id, funcionarioAtualizado);
+    public ResponseEntity<?> editarFuncionarioPorId(@PathVariable Long id, @RequestBody FuncionariosDTO funcionarioAtualizado) {
+
+        FuncionariosDTO funcionarioEditado = funcionariosService.editarFuncionarioId(id, funcionarioAtualizado);
+
+        if (funcionarioEditado != null) {
+            return ResponseEntity.ok(funcionarioEditado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Funcionário não encontrado! ID: " + id);
+        }
     }
 
     // Deletar Ninja (DELETE)
     @DeleteMapping("/deletar/{id}")
-    public void deletarFuncionarioPorId(@PathVariable Long id) {
-        funcionariosService.deletarPorId(id);
+    public ResponseEntity<String> deletarFuncionarioPorId(@PathVariable Long id) {
+
+       if (funcionariosService.listarFuncionariosId(id) != null) {
+            funcionariosService.deletarPorId(id);
+            return ResponseEntity.ok("Funcionário deletado com sucesso! ID: " + id);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Funcionário não encontrado! ID: " + id);
+       }
     }
 
 }
