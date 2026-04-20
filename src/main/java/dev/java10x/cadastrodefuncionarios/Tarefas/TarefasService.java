@@ -1,10 +1,12 @@
 package dev.java10x.cadastrodefuncionarios.Tarefas;
 
+import dev.java10x.cadastrodefuncionarios.Funcionarios.FuncionariosDTO;
 import dev.java10x.cadastrodefuncionarios.Funcionarios.FuncionariosModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TarefasService {
@@ -25,14 +27,17 @@ public class TarefasService {
     }
 
     // Mostrar por Id
-    public TarefasModel listarTarefaId(Long id) {
+    public TarefasDTO listarTarefaId(Long id) {
         Optional<TarefasModel> tarefaId =  tarefasRepository.findById(id);
-        return tarefaId.orElse(null);
+        return tarefaId.map(tarefasMapper::map).orElse(null);
     }
 
     // Mostrar todas as tarefas
-    public List<TarefasModel>  listarTarefas() {
-        return tarefasRepository.findAll();
+    public List<TarefasDTO>  listarTarefas() {
+        List<TarefasModel> tarefas = tarefasRepository.findAll();
+        return tarefas.stream()
+                .map(tarefasMapper::map)
+                .collect(Collectors.toList());
     }
 
     // Deletar Tarefa
@@ -41,13 +46,15 @@ public class TarefasService {
     }
 
     // Atualizar Tarefa por Id
-    public TarefasModel editarTarefaId(Long id, TarefasModel tarefaAtualizada) {
-        if (tarefasRepository.existsById(id)) {
-            tarefaAtualizada.setId(id);
-            return tarefasRepository.save(tarefaAtualizada);
+    public TarefasDTO editarTarefaId(Long id, TarefasDTO tarefaAtualizada) {
+        Optional<TarefasModel> tarefaExistente = tarefasRepository.findById(id);
+        if (tarefaExistente.isPresent()) {
+            TarefasModel tarefaAtualizadaModel = tarefasMapper.map(tarefaAtualizada);
+            tarefaAtualizadaModel.setId(id);
+            TarefasModel tarefaSalva = tarefasRepository.save(tarefaAtualizadaModel);
+            return tarefasMapper.map(tarefaSalva);
         } else {
             return null;
         }
     }
-
 }

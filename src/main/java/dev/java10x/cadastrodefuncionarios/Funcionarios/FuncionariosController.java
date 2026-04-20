@@ -21,25 +21,25 @@ public class FuncionariosController {
 
     // Adicionar Funciońario (CREATE)
     @PostMapping("/adicionar")
-    public FuncionariosDTO criarFuncionario (@RequestBody FuncionariosDTO funcionario){
-        return funcionariosService.criarFuncionario(funcionario);
+    public FuncionariosDTO criarFuncionario(@RequestBody FuncionariosDTO funcionariosDTO) {
+        return funcionariosService.criarFuncionario(funcionariosDTO);
     }
 
     // Procurar Funcionario por Id (CREATE)
     @GetMapping("/procurar/{id}")
-    public FuncionariosModel mostrarFuncionariosId(@PathVariable Long id) {
+    public FuncionariosDTO mostrarFuncionariosId(@PathVariable Long id) {
         return funcionariosService.listarFuncionariosId(id);
     }
 
     // Mostrar todos os funcionários (READ)
     @GetMapping("/mostrar")
-    public List<FuncionariosModel> mostrarFuncionarios() {
+    public List<FuncionariosDTO> mostrarFuncionarios() {
         return funcionariosService.listarFuncionarios();
     }
 
     // Alterar dados dos Funcionários (UPDATE)
     @PutMapping("/editar/{id}")
-    public FuncionariosModel editarFuncionarioPorId(@PathVariable Long id, FuncionariosModel funcionarioAtualizado) {
+    public FuncionariosDTO editarFuncionarioPorId(@PathVariable Long id, @RequestBody FuncionariosDTO funcionarioAtualizado) {
         return funcionariosService.editarFuncionarioId(id, funcionarioAtualizado);
     }
 
