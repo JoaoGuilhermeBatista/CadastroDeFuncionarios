@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/funcionarios")
 public class FuncionariosController {
 
-    private FuncionariosService funcionariosService;
+    private final FuncionariosService funcionariosService;
 
 
     public FuncionariosController(FuncionariosService funcionariosService) {

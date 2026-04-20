@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 @Service
 public class FuncionariosService {
 
-    private FuncionariosRepository funcionariosRepository;
-    private FuncionariosMapper funcionariosMapper;
+    private final FuncionariosRepository funcionariosRepository;
+    private final FuncionariosMapper funcionariosMapper;
 
     public FuncionariosService(FuncionariosRepository funcionariosRepository, FuncionariosMapper funcionariosMapper) {
         this.funcionariosRepository = funcionariosRepository;

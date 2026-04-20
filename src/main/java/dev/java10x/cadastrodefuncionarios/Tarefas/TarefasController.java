@@ -10,7 +10,7 @@ import java.util.List;
 public class TarefasController {
 
     private final TarefasRepository tarefasRepository;
-    private TarefasService tarefasService;
+    private final TarefasService tarefasService;
 
     public TarefasController(TarefasService tarefasService, TarefasRepository tarefasRepository) {
         this.tarefasService = tarefasService;

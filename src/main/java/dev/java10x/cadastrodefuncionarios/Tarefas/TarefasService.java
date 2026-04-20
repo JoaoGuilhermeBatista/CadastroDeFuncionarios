@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 @Service
 public class TarefasService {
 
-    private TarefasRepository tarefasRepository;
-    private TarefasMapper tarefasMapper;
+    private final TarefasRepository tarefasRepository;
+    private final TarefasMapper tarefasMapper;
 
     public TarefasService(TarefasRepository tarefasRepository, TarefasMapper tarefasMapper) {
         this.tarefasRepository = tarefasRepository;
