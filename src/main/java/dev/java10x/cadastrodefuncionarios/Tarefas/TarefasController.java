@@ -1,7 +1,5 @@
 package dev.java10x.cadastrodefuncionarios.Tarefas;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,22 +18,11 @@ public class TarefasController {
         this.tarefasRepository = tarefasRepository;
     }
 
-    @Operation(summary = "Mensagem de boas vindas",
-            description = "Essa rota da uma mensagem de boas vindas para quem acessa ela.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Mensagem retornada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Requisição inválida")
-    })
     @GetMapping("/boasvindas")
     public String boasVindas() {
         return "Boas vindas a parte de designaçao, aqui você pode designar tarefas para os funcionários da sua empresa e qual a sua urgencia.";
     }
 
-    @Operation(summary = "Adicionar tarefa", description = "Cria uma nova tarefa no sistema.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Tarefa criada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Dados inválidos para criação da tarefa")
-    })
     @PostMapping("/adicionar")
     public ResponseEntity<String> criarTarefa (@RequestBody TarefasDTO tarefa) {
 
@@ -44,11 +31,6 @@ public class TarefasController {
                 .body("Tarefa criada com sucesso! Título: " + novaTarefa.getNome() + " ID: "  + novaTarefa.getId());
     }
 
-    @Operation(summary = "Buscar tarefa por ID", description = "Retorna os dados de uma tarefa pelo seu ID.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Tarefa encontrada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "ID inválido")
-    })
     @GetMapping("/procurar/{id}")
     public ResponseEntity<?> listarTarefasPorId(@PathVariable Long id) {
 
@@ -61,11 +43,6 @@ public class TarefasController {
         }
     }
 
-    @Operation(summary = "Listar todas as tarefas", description = "Retorna a lista completa de tarefas cadastradas.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Lista retornada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Requisição inválida")
-    })
     @GetMapping("/mostrar")
     public ResponseEntity<List<TarefasDTO>> listarTarefas() {
         List<TarefasDTO> tarefas = tarefasService.listarTarefas();
@@ -73,11 +50,6 @@ public class TarefasController {
                 .body(tarefas);
     }
 
-    @Operation(summary = "Editar tarefa", description = "Atualiza os dados de uma tarefa existente pelo seu ID.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Tarefa atualizada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Dados inválidos para atualização")
-    })
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> editarTarefaPorId(@PathVariable Long id, @RequestBody TarefasDTO tarefaAtualizada) {
 
@@ -90,11 +62,6 @@ public class TarefasController {
         }
     }
 
-    @Operation(summary = "Deletar tarefa", description = "Remove uma tarefa do sistema pelo seu ID.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Tarefa deletada com sucesso"),
-            @ApiResponse(responseCode = "400", description = "ID inválido")
-    })
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletarTarefaPorId(@PathVariable Long id) {
 
